@@ -1,0 +1,11 @@
+fe-resume-app/.angular/*
+fe-resume-app/.vscode/
+fe-resume-app/dist/
+fe-resume-app/node_modules/
+
+be-server/node_modules/
+be-server/.env
+
+.DS_Store
+Thumbs.db
+
