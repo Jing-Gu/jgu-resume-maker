@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: ''
+  api: 'https://jgu-resume-maker.onrender.com/api/'
 }

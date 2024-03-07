@@ -41,6 +41,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "/",
             "outputPath": "dist/jgu-resume",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -102,6 +103,9 @@
           "options": {
             "buildTarget": "jgu-resume:build"
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
