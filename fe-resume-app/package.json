@@ -1,6 +1,7 @@
 {
   "name": "jgu-resume",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Angular SPA to generate a resume by feeding Notion data",
   "scripts": {
     "ng": "ng",
     "dev": "ng serve",

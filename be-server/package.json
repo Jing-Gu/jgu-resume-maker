@@ -1,8 +1,8 @@
 {
-  "name": "server",
+  "name": "jgu-resume-server",
   "type": "module",
   "version": "1.0.0",
-  "description": "",
+  "description": "a reverse proxy node server to serve resume contents from Notion CMS",
   "main": "index.js",
   "scripts": {
     "start": "node src/server.js",
