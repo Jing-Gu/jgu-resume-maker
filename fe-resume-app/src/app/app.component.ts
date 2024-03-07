@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
 import { AppService } from './app.service'
 import { Subscription, map } from 'rxjs'
-import { NotionListObject, ResumeItem } from './app.interface'
+import { ResumeItem } from './app.interface'
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ import { NotionListObject, ResumeItem } from './app.interface'
   styles: []
 })
 export class AppComponent implements OnInit, OnDestroy{
-  title = 'jgu-resume';
+  title = "jgu's resume";
 
   private service = inject(AppService)
   personal: ResumeItem | undefined
