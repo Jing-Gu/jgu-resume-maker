@@ -1,5 +1,6 @@
 import http from "http";
 import { Client } from "@notionhq/client";
+import puppeteer from 'puppeteer';
 import { DB_API_KEY, DB_ID, HOST, PORT } from "./config.js";
 
 const notion = new Client({
@@ -8,8 +9,23 @@ const notion = new Client({
 
 const server = http.createServer(async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Content-Type", "application/json");
-  if (req.url.startsWith('/api')) {
+
+  if(req.url.trim() === '/generate-pdf/') {
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.goto('https://www.jinggu.dev/jgu-resume-maker/', {waitUntil: 'networkidle0'});
+    const pdfBuffer = await page.pdf({ format: 'Letter', printBackground: true });
+
+    await browser.close();
+
+    res.writeHead(200, {
+      'Content-Type': 'application/pdf',
+      'Content-Length': pdfBuffer.length,
+      'Content-Disposition': 'inline; filename="jgu-resume.pdf"' // Display PDF in browser
+    });
+
+    res.end(pdfBuffer);
+  } else if(req.url.trim() === '/api/') {
     const dbQuery = await notion.databases.query({
       database_id: DB_ID,
     });
