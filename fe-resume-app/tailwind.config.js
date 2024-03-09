@@ -11,7 +11,7 @@ module.exports = {
 			"cream": "#FFF8E5",
 			"charcoal": "#333333",
 			"smoke": "#757575",
-      "offwhite": "#fdfdfd",
+      "offwhite": "#FAF9F6",
 			"white": "#fff"
 		},
     extend: {},

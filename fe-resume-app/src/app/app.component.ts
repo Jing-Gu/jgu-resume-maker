@@ -13,8 +13,6 @@ import { ResumeItem } from './app.interface'
   styles: []
 })
 export class AppComponent implements OnInit, OnDestroy{
-  title = "jgu's resume";
-
   private service = inject(AppService)
   personal: ResumeItem | undefined
   education: ResumeItem | undefined
@@ -23,6 +21,9 @@ export class AppComponent implements OnInit, OnDestroy{
   certifications: ResumeItem | undefined
   resumeSub: Subscription | undefined
 
+  loadingPage = true
+  loadingPdf = false
+  githubLink = 'https://github.com/jing-gu/jgu-resume-maker'
 
   ngOnInit(): void {
     this.resumeSub = this.service.getDb().pipe(
@@ -43,13 +44,23 @@ export class AppComponent implements OnInit, OnDestroy{
           if(r.name === 'certifications') {
             this.certifications = r
           }
-
         })
-
       })
-    ).subscribe(r => {
-      // add a loader, show when data prepared
-      console.log(this.personal, this.education)
+    ).subscribe(_ => {
+      if (this.personal && this.education && this.experience &&
+        this.skills && this.certifications) {
+        this.loadingPage = false
+      }
+    })
+  }
+
+  generatePDF() {
+    this.loadingPdf = true
+    this.service.generatePdf().subscribe((pdfLink: any) => {
+      const file = new Blob([pdfLink], {type: 'application/pdf'})
+      const fileURL = URL.createObjectURL(file)
+      window.open(fileURL, '_blank')
+      this.loadingPdf = false
     })
   }
 
