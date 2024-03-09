@@ -1,7 +1,9 @@
+<div class="bg-offwhite">
 @if (!loadingPage) {
-<div class="bg-offwhite p-4">
-  <div class="flex gap-4 justify-center p-4">
-    <a [href]="githubLink" target="_blank" class="py-2 px-4 rounded-md border border-charcoal">Github</a>
+  <div class="absolute left-4 top-4 flex flex-col gap-4">
+    <a [href]="githubLink" target="_blank"
+      class="py-2 px-4 rounded-md border border-charcoal text-center">Github
+    </a>
     <button (click)="generatePDF()" class="py-2 px-4 rounded-md bg-charcoal text-white">
       Generate PDF
     </button>
@@ -82,10 +84,11 @@
       </div>
     </div>
   </div>
-</div>
+
 } @else {
 <div class="absolute top-1/2 left-1/2 -translate-x-1/2">
   <span class="loader"></span>
   <span class="text-smoke">Generating awesome resume</span>
 </div>
 }
+</div>
